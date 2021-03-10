@@ -3,7 +3,9 @@ package com.lulakao.servicepractice;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
@@ -23,9 +25,19 @@ public class MyService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         // The service is starting, due to a call to startService()
         Log.d("MyService", "=== onStartCommand() ===");
-        // Do the task below
-        // ...
-        Toast.makeText(this, "onStartCommand : Start Service", Toast.LENGTH_SHORT).show();
+        // 開啟子線程
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // 模擬耗時操作，在子執行緒中進行
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(MyService.this, "onStartCommand : Start Service", Toast.LENGTH_SHORT).show();
+                    }
+                }, 5000);
+            }
+        }).start();
         return super.onStartCommand(intent, flags, startId);
     }
     //====== Call to startService() END ======//
@@ -66,9 +78,19 @@ public class MyService extends Service {
 
         public void startTask(){
             Log.d("MyService", "=== MyBinder.startTask() ===");
-            // Do the task below
-            // ...
-            Toast.makeText(MyService.this, "MyBinder.startTask : Start Task", Toast.LENGTH_SHORT).show();
+            // 開啟子線程
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    // 模擬耗時操作，在子執行緒中進行
+                    new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(MyService.this, "MyBinder.startTask : Start Task", Toast.LENGTH_SHORT).show();
+                        }
+                    }, 5000);
+                }
+            }).start();
         }
     }
     //====== Call to bindService() END ======//

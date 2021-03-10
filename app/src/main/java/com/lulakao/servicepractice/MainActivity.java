@@ -17,12 +17,14 @@ public class MainActivity extends AppCompatActivity {
     private Intent intent_bind;
     private MyService.MyBinder myBinder;
     private ServiceConnection connection = new ServiceConnection() {
+        // Activity 與 Service 建立關聯
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             myBinder = (MyService.MyBinder) service;
             myBinder.startTask();
         }
 
+        // Activity 與 Service 解除關聯
         @Override
         public void onServiceDisconnected(ComponentName name) {
         }
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     public void bindService(View view) {
         intent_bind = new Intent(this, MyService.class);
         Log.d("MyService","bindService --- intent_bind = " + intent_bind);
-        bindService(intent_bind, connection, BIND_AUTO_CREATE);
+        bindService(intent_bind, connection, BIND_AUTO_CREATE); // BIND_AUTO_CREATE : 在 Activity 和 Service 建立關聯後自動創建 Service
 
         /** 呼叫 bindService() 可以讓 Activity 與 Service 進行綁定，例如在 Activity 中指定 Service 執行某些任務。
          *  而 indService() 也能夠讓 Service 被多個不同的應用程式呼叫，達到跨應用程式的互動與協作。
