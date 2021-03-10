@@ -4,22 +4,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/btn_start"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:onClick="startService"
-        android:text="Start" />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btn_stop"
+        <Button
+            android:id="@+id/btn_startService"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:onClick="startService"
+            android:text="Start" />
+
+        <Button
+            android:id="@+id/btn_stopService"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="stopService"
+            android:text="Stop" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="stopService"
-        android:text="Stop" />
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_bindService"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:onClick="bindService"
+            android:text="Bind" />
+
+        <Button
+            android:id="@+id/btn_unbindService"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="unbindService"
+            android:text="Unbind" />
+
+    </LinearLayout>
 
 </LinearLayout>
