@@ -42,5 +42,6 @@ public class MyService extends Service {
         // The service is no longer used and is being destroyed
         super.onDestroy();
         Log.d("MyService", "=== onDestroy() ===");
+        Toast.makeText(this, "Stop Service", Toast.LENGTH_SHORT).show();
     }
 }
