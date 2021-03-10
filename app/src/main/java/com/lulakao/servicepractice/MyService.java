@@ -42,18 +42,22 @@ public class MyService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
+        // A client is binding to the service with bindService()
         Log.d("MyService", "=== onBind() ===");
         return myBinder;
     }
 
     @Override
     public boolean onUnbind(Intent intent) {
+        // All clients have unbound with unbindService()
         Log.d("MyService", "=== onUnbind() ===");
         return super.onUnbind(intent);
     }
 
     @Override
     public void onRebind(Intent intent) {
+        // A client is binding to the service with bindService(),
+        // after onUnbind() has already been called
         Log.d("MyService", "=== onRebind() ===");
         super.onRebind(intent);
     }

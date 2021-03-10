@@ -66,6 +66,14 @@ public class MainActivity extends AppCompatActivity {
         intent_bind = new Intent(this, MyService.class);
         Log.d("MyService","bindService --- intent_bind = " + intent_bind);
         bindService(intent_bind, connection, BIND_AUTO_CREATE);
+
+        /** 呼叫 bindService() 可以讓 Activity 與 Service 進行綁定，例如在 Activity 中指定 Service 執行某些任務。
+         *  而 indService() 也能夠讓 Service 被多個不同的應用程式呼叫，達到跨應用程式的互動與協作。
+         *
+         *  應用程式呼叫 bindService() 與 Service 綁定前，應用程式需要建立一個 serviceConnection 物件，
+         *  呼叫後若 Service 尚未啟動，Service 類別內的 onCreate() 就會被呼叫，
+         *  使用這種方法啟動 Service 的應用程式，可以透過 onBind() 方法取得 IBinder 物件，
+         *  接下來就可以透過 IBinder 物件來取得 Service 的事件。    */
     }
     //====== onClick : Call to bindService() END ======//
 
