@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
+    private String TAG = "MyService";
+
     // this is for startService() and stopService()
     private Intent intent_start;
 
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     //====== onClick : Call to startService() START ======//
     public void startService(View view) {
         intent_start = new Intent(this, MyService.class);
-        Log.d("MyService","startService --- intent_start = " + intent_start);
+        Log.d(TAG,"startService --- intent_start = " + intent_start);
         startService(intent_start);
 
         /** 當 Service 使用 startService() 啟動後，就算 Activity 被關閉，Service 也會持續在 Background 工作。
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
     //====== onClick : Call to stopService() START ======//
     public void stopService(View view) {
-        Log.d("MyService","stopService --- intent_start = " + intent_start);
+        Log.d(TAG,"stopService --- intent_start = " + intent_start);
         if(intent_start != null) { // 加上此判斷式，才不會因用戶點了 Start 的按鈕，但 intent_start = null 而 shutdown
             stopService(intent_start);
             intent_start = null; // 使用完畢後指定 intent_start = null 以利 GC 回收
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     //====== onClick : Call to bindService() START ======//
     public void bindService(View view) {
         intent_bind = new Intent(this, MyService.class);
-        Log.d("MyService","bindService --- intent_bind = " + intent_bind);
+        Log.d(TAG,"bindService --- intent_bind = " + intent_bind);
         bindService(intent_bind, connection, BIND_AUTO_CREATE); // BIND_AUTO_CREATE : 在 Activity 和 Service 建立關聯後自動創建 Service
 
         /** 呼叫 bindService() 可以讓 Activity 與 Service 進行綁定，例如在 Activity 中指定 Service 執行某些任務。
@@ -81,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
     //====== onClick : Call to unbindService() START ======//
     public void unbindService(View view) {
-        Log.d("MyService","unbindService --- intent_bind = " + intent_bind);
+        Log.d(TAG,"unbindService --- intent_bind = " + intent_bind);
         if(intent_bind != null) { // 加上此判斷式，才不會因用戶點了 Unbind 的按鈕，但 intent_bind = null 而 shutdown
             unbindService(connection);
             intent_bind = null; // 使用完畢後指定 intent_bind = null 以利 GC 回收
