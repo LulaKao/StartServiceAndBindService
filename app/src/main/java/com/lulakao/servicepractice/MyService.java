@@ -34,10 +34,12 @@ public class MyService extends Service {
                 .setAutoCancel(true) // 設定點選通知後，通知會自動消失
                 .setContentTitle("This is Notification Title") // 設定通知標題
                 .setContentText("This is Notification message...") // 設定通知內容
-                .setSmallIcon(R.mipmap.ic_launcher) // 設定 icon
+                .setSmallIcon(R.mipmap.ic_launcher) // 設定小 icon
                 .setWhen(System.currentTimeMillis()) // 指定通知被建立的時間，以毫秒為單位，下拉通知後會將時間顯示在通知上
                 .setOngoing(true) // 設定為正在進行
                 .setContentIntent(pendingIntent) // 設定欲執行的 intent
+                .setDefaults(Notification.DEFAULT_ALL) // 添加聲音、閃爍、震動的預設效果
+                .setVisibility(Notification.VISIBILITY_PUBLIC) // 設定鎖定螢幕時是否允許顯示通知內容
                 .build();
 
         // 執行 notification
